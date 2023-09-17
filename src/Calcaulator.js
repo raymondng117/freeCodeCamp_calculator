@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Decimal from "decimal.js";
-import NumberButtons from "./Buttons";
 
 const Calculator = () => {
     // ** initialize calc as an object having a combinated state of "num" and "display" 
@@ -279,38 +278,103 @@ const Calculator = () => {
 
     }, [handleOperatorChange])
 
+
+    //const operators = ["AC", "+", "-", "x", "/", "="];
+    //const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "."];
+
+    //
+    const acButton = [0]
+
+    // number: 7 8 9 and operator: +
+    const firstRowNumbersOfNumberButtons = [6, 7, 8];
+    const firstRowNumbersOfOperatorButtons = [1];
+
+    // number: 4 5 6 and operator: -
+    const secondRowNumbersOfNumberButtons = [3, 4, 5];
+    const secondRowNumbersOfOperatorButtons = [2];
+
+    // number: 1 2 3 and operator: *
+    const thirdRowNumbersOfNumberButtons = [0, 1, 2];
+    const thirdRowNumbersOfOperatorButtons = [3];
+
+    // number: 0 . and operator: = /
+    const fourthRowNumbersOfNumberButtons = [9, 10];
+    const fourthRowNumbersOfOperatorButtons = [5, 4];
+
+
     return (
-        <div className="container mt-5 border">
+        <div className="container-xxl" style={{marginTop: "5%"}}>
             <div className="row">
-                <div className="col-12">
-                    <div className="display-4 bg-secondary mb-3 p-3 text-end" id="display">
-                        {calc.display}
-                    </div>
-                </div>
-            </div>
+                <div className="col-8 d-flex justify-content-center">
+                    <div className="container" style={{marginLeft: "50%"}}>
+                        <div className="row">
+                            <div className="col-12">
+                                <div className="display-4 bg-secondary mb-3 p-3 text-end" id="display">
+                                    {calc.display}
+                                </div>
+                            </div>
+                        </div>
 
-            <div className="row" id="panel">
-                <div className="col-12">
-                    <div className="d-flex justify-content-center align-items-center flex-wrap">
-                        {operators.map((operator, operatorIndex) => (
-                            <button className="btn btn-primary btn-lg m-2" key={operatorIndex} id={operatorsID[operatorIndex]} onClick={() => handleOperatorChange(operatorIndex)}>{operator}</button>
-                        ))}
-                    </div>
-                </div>
-            </div>
 
-            {/* 
-            create each number button with key, id and most important, the numberClicker 
-            notes for onclick:
-             1. when the callback function has no parameters, just call the function with out ();
-             2. otherwise, onClick = {() => numClickHandler(parameter1, ...)}
-            */}
-            <div className="row" id="panel">
-                <div className="col-12">
-                    <div className="d-flex justify-content-center align-items-center flex-wrap">
-                        {numbers.map((number, i) => (
-                            <button className="btn btn-secondary btn-lg m-2" key={i} id={numbersID[i]} onClick={numClickHandler}>{number}</button>
-                        ))}
+                        <div className="row" id="panel">
+                            {acButton.map((i) => (
+                                <div className="col-12">
+                                    <button className="btn btn-danger btn-lg btn-block" key={i} id={operatorsID[i]} onClick={() => handleOperatorChange(i)} style={{ width: "100%" }}>{operators[i]}</button>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="row justify-content-center align-content-center" id="panel">
+                            {firstRowNumbersOfNumberButtons.map((i) => (
+                                <div className="col-3">
+                                    <button className="btn btn-primary btn-lg btn-block" key={i} id={numbersID[i]} onClick={numClickHandler}>{numbers[i]}</button>
+                                </div>
+                            ))}
+                            {firstRowNumbersOfOperatorButtons.map((i) => (
+                                <div className="col-3">
+                                    <button className="btn btn-warning btn-lg btn-block" key={i} id={operatorsID[i]} onClick={() => handleOperatorChange(i)}>{operators[i]}</button>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="row" id="panel">
+                            {secondRowNumbersOfNumberButtons.map((i) => (
+                                <div className="col-3">
+                                    <button className="btn btn-primary btn-lg btn-block " key={i} id={numbersID[i]} onClick={numClickHandler}>{numbers[i]}</button>
+                                </div>
+                            ))}
+                            {secondRowNumbersOfOperatorButtons.map((i) => (
+                                <div className="col-3">
+                                    <button className="btn btn-warning btn-lg btn-block" key={i} id={operatorsID[i]} onClick={() => handleOperatorChange(i)}>{operators[i]}</button>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="row" id="panel">
+                            {thirdRowNumbersOfNumberButtons.map((i) => (
+                                <div className="col-3">
+                                    <button className="btn btn-primary btn-lg btn-block" key={i} id={numbersID[i]} onClick={numClickHandler}>{numbers[i]}</button>
+                                </div>
+                            ))}
+                            {thirdRowNumbersOfOperatorButtons.map((i) => (
+                                <div className="col-3">
+                                    <button className="btn btn-warning btn-lg btn-block" key={i} id={operatorsID[i]} onClick={() => handleOperatorChange(i)}>{operators[i]}</button>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="row" id="panel">
+                            {fourthRowNumbersOfNumberButtons.map((i) => (
+                                <div className="col-3">
+                                    <button className="btn btn-primary btn-lg btn-block" key={i} id={numbersID[i]} onClick={numClickHandler}>{numbers[i]}</button>
+                                </div>
+                            ))}
+                            {fourthRowNumbersOfOperatorButtons.map((i) => (
+                                <div className="col-3">
+                                    <button className="btn btn-warning btn-lg btn-block" key={i} id={operatorsID[i]} onClick={() => handleOperatorChange(i)}>{operators[i]}</button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
